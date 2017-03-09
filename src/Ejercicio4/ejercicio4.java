@@ -13,31 +13,27 @@ import becker.robots.*;
  * @author JoseLuis
  */
 public class ejercicio4 {
-
     
         public int cont=0;
-        
 	private City A;
 	private Robot robot;
 	private Thing pelota;
         
         public ejercicio4() {
         this.A = new City();
-		this.robot = new Robot(A,0,1,Direction.SOUTH,0);
-		this.pelota = new Thing (A,1,1);
-    }
+        this.robot = new Robot(A,0,1,Direction.SOUTH,0);
+	this.pelota = new Thing (A,50,50);
+        }
+        
     public void jugar(){
-        this.histo();
-        this.histo();
-        this.histo();
-        this.histo();
-           
-    
-}
-    private void histo(){
         robot.move();
         robot.turnLeft();
-        
+        this.histo();  
+    }
+    
+    private void histo(){
+        for(int k=0; k<4; k++){
+      
         while(robot.canPickThing()==true){
             robot.pickThing();
             cont++;
@@ -47,27 +43,19 @@ public class ejercicio4 {
             robot.putThing();
             robot.move();
         }
-        System.out.println(robot.countThingsInBackpack());
         
         this.giroIzquierda(2);
         this.soloAvance(cont-1);
         robot.turnLeft();
         robot.move();
         robot.turnLeft();
-                cont=0;
 
-        
-        
-
-            
+        cont=0;
         }
+    }
 
     public City getA() {
         return A;
-    }
-
-    public void setA(City A) {
-        this.A = A;
     }
 
     public Robot getRobot() {
@@ -85,35 +73,33 @@ public class ejercicio4 {
     public void setPelota(Thing pelota) {
         this.pelota = pelota;
     }
-    
-    
-        private void giroIzquierda(int num){
-	for (int i = 0; i <num; i++) {
-	this.advanceLeft();
-}
-        }
-        
-        public void advanceLeft(){
-			
-		this.robot.turnLeft();
-		}
-        private void soloAvance(int num){
-			for (int i = 0; i < num; i++) {
-				this.robot.move();
-			}
-		}
-}
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    private void giroIzquierda(int num){
+    for (int i = 0; i <num; i++) {
+    this.advanceLeft();
     }
+} 
+    public void advanceLeft(){		
+    this.robot.turnLeft();
+    }
+    
+    private void soloAvance(int num){
+    for (int i = 0; i < num; i++) {
+        this.robot.move();
+	}
+    }
+}
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
